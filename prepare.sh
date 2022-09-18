@@ -37,14 +37,16 @@ sudo systemctl restart nginx
 # ====== mysql ======
 sudo cp etc/my.cnf /etc/my.cnf
 sudo cp -r etc/my.cnf.d /etc/my.cnf.d
-# sudo truncate -s 0 ${mysql_slow_log}
-# sudo truncate -s 0 ${mysql_error_log}
- sudo systemctl restart mariadb
+sudo cp ${mysql_slow_log} ${mysql_slow_log}.prev
+sudo truncate -s 0 ${mysql_slow_log}
+sudo cp ${mysql_error_log} ${mysql_error_log}.prev
+sudo truncate -s 0 ${mysql_error_log}
+sudo systemctl restart mariadb
 
 
 # slow log
-#MYSQL="mysql -h${MYSQL_HOST} -P${MYSQL_PORT} -u${MYSQL_USER} -p${MYSQL_PASS} ${MYSQL_DBNAME}"
-#${MYSQL} -e "set global slow_query_log_file = '${mysql_slow_log}'; set global long_query_time = 0; set global slow_query_log = ON;"
+MYSQL="mysql -h${DB_HOST} -P${DB_PORT} -u${DB_USER} -p${DB_PASS} ${DB_DATABASE}"
+${MYSQL} -e "set global slow_query_log_file = '${mysql_slow_log}'; set global long_query_time = 0; set global slow_query_log = ON;"
 
 echo "OK"
 
