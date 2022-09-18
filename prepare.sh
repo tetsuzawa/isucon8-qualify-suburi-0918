@@ -19,11 +19,11 @@ result_dir="/home/isucon/result"
 EOF
 
 . /tmp/prepared_env
-. ./env.sh
+. ./torb/webapp/env.sh
 
 
 # ====== go ======
-make -C webapp/torb/go build
+make -C torb/webapp/go build
 sudo systemctl restart torb.go
 
 # ====== nginx ======
