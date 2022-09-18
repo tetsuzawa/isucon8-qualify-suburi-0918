@@ -30,5 +30,6 @@ alp ltsv --file=${nginx_access_log} \
 # mysqlowquery
 #sudo mysqldumpslow -s t ${mysql_slow_log} > ${result_dir}/mysqld-slow.txt
 
-pt-query-digest --explain "h=${DB_HOST},u=${DB_USER},p=${DB_PASS},D=${DB_DATABASE}" ${mysql_slow_log} \
-  > ${result_dir}/pt-query-digest.txt
+#pt-query-digest --explain "h=${DB_HOST},u=${DB_USER},p=${DB_PASS},D=${DB_DATABASE}" ${mysql_slow_log} \
+#  > ${result_dir}/pt-query-digest.txt
+pt-query-digest ${mysql_slow_log} > ${result_dir}/pt-query-digest.txt
