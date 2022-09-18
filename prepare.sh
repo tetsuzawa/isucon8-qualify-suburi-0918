@@ -35,9 +35,12 @@ sudo nginx -t
 sudo systemctl restart nginx
 
 # ====== mysql ======
+sudo cp etc/my.cnf /etc/my.cnf
+sudo cp -r etc/my.cnf.d /etc/my.cnf.d
 # sudo truncate -s 0 ${mysql_slow_log}
 # sudo truncate -s 0 ${mysql_error_log}
-# sudo systemctl restart mysql
+ sudo systemctl restart mariadb
+
 
 # slow log
 #MYSQL="mysql -h${MYSQL_HOST} -P${MYSQL_PORT} -u${MYSQL_USER} -p${MYSQL_PASS} ${MYSQL_DBNAME}"
